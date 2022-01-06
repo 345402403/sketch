@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * @author: sketch
- * @Date: 2021/1/26 10:16
+ * @Date: 2022/1/6 20:47
  */
 @Configuration
 public class CorsConfig implements WebMvcConfigurer {

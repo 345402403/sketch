@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 /**
  * @author: sketch
- * @Date: 2021/1/25 10:24
+ * @Date: 2022/1/6 20:47
  */
 @RestControllerAdvice(basePackages = {"cn.mywork.sketch.controller"}) // 注意哦，这里要加上需要扫描的包
 public class ResponseControllerAdvice implements ResponseBodyAdvice<Object> {

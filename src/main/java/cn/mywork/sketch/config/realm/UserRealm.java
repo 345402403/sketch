@@ -20,7 +20,7 @@ import javax.annotation.Resource;
 
 /**
  * @author: sketch
- * @Date: 2021/2/18 20:47
+ * @Date: 2022/1/6 20:47
  */
 @Slf4j
 public class UserRealm extends AuthorizingRealm {

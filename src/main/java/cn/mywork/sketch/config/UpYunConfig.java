@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author: sketch
- * @Date: 2021/1/31 17:38
+ * @Date: 2022/1/6 20:47
  */
 @Component
 @ConfigurationProperties("upyun")

@@ -5,7 +5,7 @@ import lombok.Getter;
 
 /**
  * @author: sketch
- * @Date: 2021/1/25 11:40
+ * @Date: 2022/1/6 20:47
  */
 @Getter
 public class BaseException extends RuntimeException {

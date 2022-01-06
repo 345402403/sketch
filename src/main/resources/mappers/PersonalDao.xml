@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.mywork.sketch.dao.PersonalDao">
     <resultMap id="BaseResultMap" type="cn.mywork.sketch.pojo.Personal">
-        <!--@mbg.generated-->
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="gender" jdbcType="INTEGER" property="gender"/>
@@ -21,12 +20,10 @@
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
     </resultMap>
     <sql id="Base_Column_List">
-        <!--@mbg.generated-->
         id, `name`, gender, birthday, phone, email, `identity`, education, school, img_url,
         work_status, department_id, position_id, begin_date, create_time, update_time
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="cn.mywork.sketch.vo.PersonalVo">
-        <!--@mbg.generated-->
         select p.*,d.department_name,s.position_name
         from personal p
         LEFT JOIN department d
@@ -36,13 +33,11 @@
         where p.id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-        <!--@mbg.generated-->
         delete from personal
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.mywork.sketch.pojo.Personal"
             useGeneratedKeys="true">
-        <!--@mbg.generated-->
         insert into personal (`name`, gender, birthday,
         phone, email, `identity`,
         education, school, img_url,
@@ -58,7 +53,6 @@
     </insert>
     <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.mywork.sketch.pojo.Personal"
             useGeneratedKeys="true">
-        <!--@mbg.generated-->
         insert into personal
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="name != null">
@@ -144,7 +138,6 @@
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="cn.mywork.sketch.pojo.Personal">
-        <!--@mbg.generated-->
         update personal
         <set>
             <if test="name != null">
@@ -190,7 +183,6 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="cn.mywork.sketch.pojo.Personal">
-        <!--@mbg.generated-->
         update personal
         set `name` = #{name,jdbcType=VARCHAR},
         gender = #{gender,jdbcType=INTEGER},

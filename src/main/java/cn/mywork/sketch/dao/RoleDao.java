@@ -3,9 +3,6 @@ import java.util.List;
 
 import cn.mywork.sketch.pojo.Role;
 
-/**
- * @Entity cn.timelost.hr.pojo.Role
- */
 public interface RoleDao {
     /**
      *

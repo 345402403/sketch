@@ -7,9 +7,6 @@ import org.apache.ibatis.annotations.Param;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * @Entity cn.timelost.hr.pojo.Personal
- */
 public interface PersonalDao {
     /**
      * @mbg.generated

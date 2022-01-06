@@ -4,7 +4,7 @@ import org.apache.shiro.authc.AuthenticationToken;
 
 /**
  * @author: sketch
- * @Date: 2021/2/18 20:49
+ * @Date: 2022/1/6 20:47
  */
 public class JWTToken implements AuthenticationToken {
 

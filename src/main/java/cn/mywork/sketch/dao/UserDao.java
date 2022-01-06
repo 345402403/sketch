@@ -6,9 +6,6 @@ import cn.mywork.sketch.pojo.User;
 import cn.mywork.sketch.vo.UserVo;
 import org.apache.ibatis.annotations.Param;
 
-/**
- * @Entity cn.timelost.hr.pojo.User
- */
 public interface UserDao {
     /**
      *
