@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mywork.sketch.dao.DonorInfoDao">
+
+    <resultMap id="BaseResultMap" type="cn.mywork.sketch.pojo.DonorInfo">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="donor_code" jdbcType="VARCHAR" property="donorCode" />
+        <result column="donor_name" jdbcType="VARCHAR" property="donorName" />
+        <result column="donor_phone" jdbcType="VARCHAR" property="donorPhone" />
+        <result column="donor_id" jdbcType="VARCHAR" property="donorId" />
+        <result column="donor_point" jdbcType="INTEGER" property="donorPoint" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, donor_code, donor_name, donor_phone, donor_id, donor_point, create_time, update_time
+    </sql>
+
+    <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from donor_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from donor_info
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.cn.mywork.sketch.entity.DonorInfo">
+        insert into donor_info (id, donor_code, donor_name,
+            donor_phone, donor_id, donor_point,
+            create_time, update_time)
+        values (#{id,jdbcType=INTEGER}, #{donorCode,jdbcType=VARCHAR}, #{donorName,jdbcType=VARCHAR},
+            #{donorPhone,jdbcType=VARCHAR}, #{donorId,jdbcType=VARCHAR}, #{donorPoint,jdbcType=INTEGER},
+            #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.cn.mywork.sketch.entity.DonorInfo">
+        insert into donor_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="donorCode != null">
+                donor_code,
+            </if>
+            <if test="donorName != null">
+                donor_name,
+            </if>
+            <if test="donorPhone != null">
+                donor_phone,
+            </if>
+            <if test="donorId != null">
+                donor_id,
+            </if>
+            <if test="donorPoint != null">
+                donor_point,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="donorCode != null">
+                #{donorCode,jdbcType=VARCHAR},
+            </if>
+            <if test="donorName != null">
+                #{donorName,jdbcType=VARCHAR},
+            </if>
+            <if test="donorPhone != null">
+                #{donorPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="donorId != null">
+                #{donorId,jdbcType=VARCHAR},
+            </if>
+            <if test="donorPoint != null">
+                #{donorPoint,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByCon" parameterType="com.cn.mywork.sketch.entity.DonorInfo">
+        update donor_info
+        <set>
+            <if test="donorCode != null">
+                donor_code = #{donorCode,jdbcType=VARCHAR},
+            </if>
+            <if test="donorName != null">
+                donor_name = #{donorName,jdbcType=VARCHAR},
+            </if>
+            <if test="donorPhone != null">
+                donor_phone = #{donorPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="donorId != null">
+                donor_id = #{donorId,jdbcType=VARCHAR},
+            </if>
+            <if test="donorPoint != null">
+                donor_point = #{donorPoint,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateById" parameterType="com.cn.mywork.sketch.entity.DonorInfo">
+        update donor_info
+        set donor_code = #{donorCode,jdbcType=VARCHAR},
+            donor_name = #{donorName,jdbcType=VARCHAR},
+            donor_phone = #{donorPhone,jdbcType=VARCHAR},
+            donor_id = #{donorId,jdbcType=VARCHAR},
+            donor_point = #{donorPoint,jdbcType=INTEGER},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

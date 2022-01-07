@@ -3,8 +3,8 @@ package cn.mywork.sketch.config.realm;
 import cn.mywork.sketch.config.utils.JWTUtils;
 import cn.mywork.sketch.config.JWTToken;
 import cn.mywork.sketch.dao.RoleDao;
-import cn.mywork.sketch.pojo.Role;
-import cn.mywork.sketch.pojo.User;
+import cn.mywork.sketch.pojo.RoleInfo;
+import cn.mywork.sketch.pojo.UserInfo;
 import cn.mywork.sketch.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.AuthenticationException;
@@ -39,9 +39,9 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         log.info("用户授权...");
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        User user = (User) principalCollection.getPrimaryPrincipal();
-        Role role = roleDao.selectByPrimaryKey(user.getRoleId());
-        authorizationInfo.addRole(role.getName());
+        UserInfo userInfo = (UserInfo) principalCollection.getPrimaryPrincipal();
+        RoleInfo roleInfo = roleDao.selectByPrimaryKey(userInfo.getRoleId());
+        authorizationInfo.addRole(roleInfo.getName());
         authorizationInfo.addStringPermission(null);
         return authorizationInfo;
     }
@@ -56,11 +56,11 @@ public class UserRealm extends AuthorizingRealm {
         if (username == null) {
             throw new AuthenticationException("token异常");
         }
-        User userBean = userService.findByUsername(username);
+        UserInfo userInfoBean = userService.findByUsername(username);
 
-        if (!JWTUtils.verify(token, username, userBean.getPassword())) {
+        if (!JWTUtils.verify(token, username, userInfoBean.getPassword())) {
             throw new AuthenticationException("密码错误");
         }
-        return new SimpleAuthenticationInfo(userBean, token, getName());
+        return new SimpleAuthenticationInfo(userInfoBean, token, getName());
     }
 }

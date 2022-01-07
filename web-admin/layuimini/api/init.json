@@ -21,6 +21,23 @@
 			}]
 		},
 		{
+			"title": "捐赠管理",
+			"icon": "fa fa-gear",
+			"href": "",
+			"target": "_self",
+			"child": [{
+					"title": "捐赠需求",
+					"href": "page/demand.html",
+					"icon": "fa fa-cogs",
+					"target": "_self"
+				},{
+					"title": "捐赠信息",
+					"href": "page/donation.html",
+					"icon": "fa fa-cogs",
+					"target": "_self"
+				}
+			]
+		},{
 			"title": "系统设置",
 			"icon": "fa fa-gears",
 			"href": "",

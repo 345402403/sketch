@@ -1,6 +1,6 @@
 package cn.mywork.sketch.dao;
 
-import cn.mywork.sketch.pojo.Personal;
+import cn.mywork.sketch.pojo.PersonalInfo;
 import cn.mywork.sketch.vo.PersonalVo;
 import org.apache.ibatis.annotations.Param;
 
@@ -16,12 +16,12 @@ public interface PersonalDao {
     /**
      * @mbg.generated
      */
-    int insert(Personal record);
+    int insert(PersonalInfo record);
 
     /**
      * @mbg.generated
      */
-    int insertSelective(Personal record);
+    int insertSelective(PersonalInfo record);
 
     /**
      * @mbg.generated
@@ -31,12 +31,12 @@ public interface PersonalDao {
     /**
      * @mbg.generated
      */
-    int updateByPrimaryKeySelective(Personal record);
+    int updateByPrimaryKeySelective(PersonalInfo record);
 
     /**
      * @mbg.generated
      */
-    int updateByPrimaryKey(Personal record);
+    int updateByPrimaryKey(PersonalInfo record);
 
     List<PersonalVo> selectAll(@Param("departmentId") Integer departmentId, @Param("personalName") String personalName, @Param("workStatus") int workStatus);
 

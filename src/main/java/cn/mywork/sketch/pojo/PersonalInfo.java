@@ -8,7 +8,7 @@ import lombok.Data;
  * @TableName personal
  */
 @Data
-public class Personal implements Serializable {
+public class PersonalInfo implements Serializable {
     /**
      *
      *

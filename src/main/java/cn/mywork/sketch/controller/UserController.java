@@ -11,8 +11,8 @@ import javax.validation.Valid;
 import cn.mywork.sketch.config.JWTToken;
 import cn.mywork.sketch.config.utils.JWTUtils;
 import cn.mywork.sketch.enums.ResultEnum;
-import cn.mywork.sketch.pojo.Role;
-import cn.mywork.sketch.pojo.User;
+import cn.mywork.sketch.pojo.RoleInfo;
+import cn.mywork.sketch.pojo.UserInfo;
 import cn.mywork.sketch.service.UserService;
 import cn.mywork.sketch.vo.ResultVo;
 import cn.mywork.sketch.vo.UserVo;
@@ -69,7 +69,7 @@ public class UserController {
         }
         String username = user.getUsername();
         String password = user.getPassword();
-        User us = userService.findByUsername(username);
+        UserInfo us = userService.findByUsername(username);
         String salt = us.getSalt();
         Md5Hash md5Hash = new Md5Hash(password, salt, 100);
         //生成token
@@ -84,12 +84,12 @@ public class UserController {
     public ResultVo add(@RequestBody @Valid UserForm us) {
         String salt = JWTUtils.getSalt();
         String password = new Md5Hash(us.getPassword(), salt, 100).toHex();
-        User user = new User();
-        BeanUtils.copyProperties(us, user);
-        user.setSalt(salt);
-        user.setPassword(password);
-        userService.insert(user);
-        String token = JWTUtils.sign(user.getUsername(), password);
+        UserInfo userInfo = new UserInfo();
+        BeanUtils.copyProperties(us, userInfo);
+        userInfo.setSalt(salt);
+        userInfo.setPassword(password);
+        userService.insert(userInfo);
+        String token = JWTUtils.sign(userInfo.getUsername(), password);
         return ResultVo.success(token);
     }
 
@@ -108,7 +108,7 @@ public class UserController {
     }
 
     @DeleteMapping("/user/{id}")
-    @RequiresRoles("admin")
+    //@RequiresRoles("admin")
     public void delete(@PathVariable Integer id) {
         userService.deleteById(id);
     }
@@ -121,20 +121,20 @@ public class UserController {
     }
 
     @PutMapping("/user/{id}")
-    @RequiresRoles("admin")
+    //@RequiresRoles("admin")
     public void update(@PathVariable Integer id, @RequestBody UserForm us) {
-        User user = new User();
-        BeanUtils.copyProperties(us, user);
+        UserInfo userInfo = new UserInfo();
+        BeanUtils.copyProperties(us, userInfo);
         if (ObjectUtils.isEmpty(us.getPassword())) {
-            user.setPassword(null);
+            userInfo.setPassword(null);
         } else {
             String salt = JWTUtils.getSalt();
             String password = new Md5Hash(us.getPassword(), salt, 100).toHex();
-            user.setPassword(password);
-            user.setSalt(salt);
+            userInfo.setPassword(password);
+            userInfo.setSalt(salt);
         }
-        user.setId(id);
-        userService.updateById(user);
+        userInfo.setId(id);
+        userService.updateById(userInfo);
     }
 
     @GetMapping("/image")
@@ -146,7 +146,7 @@ public class UserController {
     }
 
     @GetMapping("/role/select")
-    public List<Role> role() {
+    public List<RoleInfo> role() {
         return userService.roleList();
     }
 }

@@ -3,7 +3,7 @@ package cn.mywork.sketch.service.impl;
 import cn.mywork.sketch.dao.PersonalDao;
 import cn.mywork.sketch.enums.ResultEnum;
 import cn.mywork.sketch.exception.BaseException;
-import cn.mywork.sketch.pojo.Personal;
+import cn.mywork.sketch.pojo.PersonalInfo;
 import cn.mywork.sketch.service.PersonalService;
 import cn.mywork.sketch.vo.PersonalSelectVo;
 import cn.mywork.sketch.vo.PersonalVo;
@@ -80,9 +80,9 @@ public class PersonalServiceImpl implements PersonalService {
         if (!ObjectUtils.isEmpty(personalForm.getPositionId())) {
             positionService.find(personalForm.getPositionId());
         }*/
-        Personal personal = new Personal();
-        BeanUtils.copyProperties(personalForm, personal);
-        personalDao.insertSelective(personal);
+        PersonalInfo personalInfo = new PersonalInfo();
+        BeanUtils.copyProperties(personalForm, personalInfo);
+        personalDao.insertSelective(personalInfo);
     }
 
     @Override
@@ -108,10 +108,10 @@ public class PersonalServiceImpl implements PersonalService {
         if (ObjectUtils.isEmpty(personalVo)) {
             throw new BaseException(ResultEnum.POSITION_NOT_EXIST);
         }
-        Personal personal = new Personal();
-        BeanUtils.copyProperties(personalVo, personal);
-        BeanUtils.copyProperties(personalForm, personal);
-        personal.setId(id);
-        personalDao.updateByPrimaryKeySelective(personal);
+        PersonalInfo personalInfo = new PersonalInfo();
+        BeanUtils.copyProperties(personalVo, personalInfo);
+        BeanUtils.copyProperties(personalForm, personalInfo);
+        personalInfo.setId(id);
+        personalDao.updateByPrimaryKeySelective(personalInfo);
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.mywork.sketch.dao.PersonalDao">
-    <resultMap id="BaseResultMap" type="cn.mywork.sketch.pojo.Personal">
+    <resultMap id="BaseResultMap" type="cn.mywork.sketch.pojo.PersonalInfo">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="gender" jdbcType="INTEGER" property="gender"/>
@@ -24,19 +24,16 @@
         work_status, department_id, position_id, begin_date, create_time, update_time
     </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultType="cn.mywork.sketch.vo.PersonalVo">
-        select p.*,d.department_name,s.position_name
-        from personal p
-        LEFT JOIN department d
-        on p.department_id=d.id
-        LEFT JOIN position s
-        on p.position_id=s.id
-        where p.id = #{id,jdbcType=INTEGER}
+        select
+               <include refid="Base_Column_List" />
+        from personal
+        where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete from personal
         where id = #{id,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.mywork.sketch.pojo.Personal"
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.mywork.sketch.pojo.PersonalInfo"
             useGeneratedKeys="true">
         insert into personal (`name`, gender, birthday,
         phone, email, `identity`,
@@ -51,7 +48,7 @@
         #{beginDate,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
         )
     </insert>
-    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.mywork.sketch.pojo.Personal"
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.mywork.sketch.pojo.PersonalInfo"
             useGeneratedKeys="true">
         insert into personal
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -137,7 +134,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="cn.mywork.sketch.pojo.Personal">
+    <update id="updateByPrimaryKeySelective" parameterType="cn.mywork.sketch.pojo.PersonalInfo">
         update personal
         <set>
             <if test="name != null">
@@ -182,7 +179,7 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="cn.mywork.sketch.pojo.Personal">
+    <update id="updateByPrimaryKey" parameterType="cn.mywork.sketch.pojo.PersonalInfo">
         update personal
         set `name` = #{name,jdbcType=VARCHAR},
         gender = #{gender,jdbcType=INTEGER},
@@ -200,20 +197,12 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <select id="selectAll" resultType="cn.mywork.sketch.vo.PersonalVo">
-        select p.*,d.department_name,s.position_name
-        FROM personal p LEFT JOIN department d
-        on p.department_id=d.id
-        LEFT JOIN position s
-        on p.position_id=s.id
+        select
+        <include refid="Base_Column_List" />
+        FROM personal
         <where>
-            <if test="departmentId!=0">
-                and p.department_id = #{departmentId,jdbcType=NUMERIC}
-            </if>
             <if test="personalName!=null">
-                and p.name like "%"#{personalName}"%"
-            </if>
-            <if test="workStatus!=0">
-                and p.work_status = #{workStatus,jdbcType=NUMERIC}
+                and name like "%"#{personalName}"%"
             </if>
         </where>
     </select>

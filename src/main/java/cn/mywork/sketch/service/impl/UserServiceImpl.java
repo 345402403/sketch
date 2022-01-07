@@ -1,13 +1,13 @@
 package cn.mywork.sketch.service.impl;
 
 import cn.mywork.sketch.exception.BaseException;
+import cn.mywork.sketch.pojo.UserInfo;
 import cn.mywork.sketch.service.UserService;
 import cn.mywork.sketch.vo.UserVo;
 import cn.mywork.sketch.dao.RoleDao;
 import cn.mywork.sketch.dao.UserDao;
 import cn.mywork.sketch.enums.ResultEnum;
-import cn.mywork.sketch.pojo.Role;
-import cn.mywork.sketch.pojo.User;
+import cn.mywork.sketch.pojo.RoleInfo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
@@ -30,21 +30,21 @@ public class UserServiceImpl implements UserService {
     RoleDao roleDao;
 
     @Override
-    public User findByUsername(String username) {
-        User user = userDao.selectByUsername(username);
-        if (ObjectUtils.isEmpty(user)) {
+    public UserInfo findByUsername(String username) {
+        UserInfo userInfo = userDao.selectByUsername(username);
+        if (ObjectUtils.isEmpty(userInfo)) {
             throw new BaseException(ResultEnum.USER_NOT_EXIST);
         }
-        return user;
+        return userInfo;
     }
 
     @Override
-    public User find(int id) {
-        User user = userDao.selectByPrimaryKey(id);
-        if (ObjectUtils.isEmpty(user)) {
+    public UserInfo find(int id) {
+        UserInfo userInfo = userDao.selectByPrimaryKey(id);
+        if (ObjectUtils.isEmpty(userInfo)) {
             throw new BaseException(ResultEnum.USER_NOT_EXIST);
         }
-        return user;
+        return userInfo;
     }
 
     @Override
@@ -64,17 +64,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void insert(User user) {
-        userDao.insertSelective(user);
+    public void insert(UserInfo userInfo) {
+        userDao.insertSelective(userInfo);
     }
 
     @Override
-    public void updateById(User user) {
-        userDao.updateByPrimaryKeySelective(user);
+    public void updateById(UserInfo userInfo) {
+        userDao.updateByPrimaryKeySelective(userInfo);
     }
 
     @Override
-    public List<Role> roleList() {
+    public List<RoleInfo> roleList() {
         return roleDao.selectAll();
     }
 }

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.mywork.sketch.dao.DemandInfoDao">
+
+    <resultMap id="BaseResultMap" type="cn.mywork.sketch.pojo.DemandInfo">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="demand_code" jdbcType="VARCHAR" property="demandCode" />
+        <result column="demand_name" jdbcType="VARCHAR" property="demandName" />
+        <result column="demand_status" jdbcType="TINYINT" property="demandStatus" />
+        <result column="host_name" jdbcType="VARCHAR" property="hostName" />
+        <result column="host_contacts" jdbcType="VARCHAR" property="hostContacts" />
+        <result column="host_phone" jdbcType="VARCHAR" property="hostPhone" />
+        <result column="begin_date" jdbcType="TIMESTAMP" property="beginDate" />
+        <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+        <result column="desc" jdbcType="VARCHAR" property="desc" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, demand_code, demand_name, demand_status, host_name, host_contacts, host_phone,
+        begin_date, end_date, desc, create_time, update_time
+    </sql>
+
+    <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from demand_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from demand_info
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insert" parameterType="com.cn.mywork.sketch.entity.DemandInfo">
+        insert into demand_info (id, demand_code, demand_name,
+            demand_status, host_name, host_contacts,
+            host_phone, begin_date, end_date,
+            desc, create_time, update_time
+            )
+        values (#{id,jdbcType=INTEGER}, #{demandCode,jdbcType=VARCHAR}, #{demandName,jdbcType=VARCHAR},
+            #{demandStatus,jdbcType=TINYINT}, #{hostName,jdbcType=VARCHAR}, #{hostContacts,jdbcType=VARCHAR},
+            #{hostPhone,jdbcType=VARCHAR}, #{beginDate,jdbcType=TIMESTAMP}, #{endDate,jdbcType=TIMESTAMP},
+            #{desc,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+            )
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.cn.mywork.sketch.entity.DemandInfo">
+        insert into demand_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="demandCode != null">
+                demand_code,
+            </if>
+            <if test="demandName != null">
+                demand_name,
+            </if>
+            <if test="demandStatus != null">
+                demand_status,
+            </if>
+            <if test="hostName != null">
+                host_name,
+            </if>
+            <if test="hostContacts != null">
+                host_contacts,
+            </if>
+            <if test="hostPhone != null">
+                host_phone,
+            </if>
+            <if test="beginDate != null">
+                begin_date,
+            </if>
+            <if test="endDate != null">
+                end_date,
+            </if>
+            <if test="desc != null">
+                desc,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="demandCode != null">
+                #{demandCode,jdbcType=VARCHAR},
+            </if>
+            <if test="demandName != null">
+                #{demandName,jdbcType=VARCHAR},
+            </if>
+            <if test="demandStatus != null">
+                #{demandStatus,jdbcType=TINYINT},
+            </if>
+            <if test="hostName != null">
+                #{hostName,jdbcType=VARCHAR},
+            </if>
+            <if test="hostContacts != null">
+                #{hostContacts,jdbcType=VARCHAR},
+            </if>
+            <if test="hostPhone != null">
+                #{hostPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="beginDate != null">
+                #{beginDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endDate != null">
+                #{endDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="desc != null">
+                #{desc,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByCon" parameterType="com.cn.mywork.sketch.entity.DemandInfo">
+        update demand_info
+        <set>
+            <if test="demandCode != null">
+                demand_code = #{demandCode,jdbcType=VARCHAR},
+            </if>
+            <if test="demandName != null">
+                demand_name = #{demandName,jdbcType=VARCHAR},
+            </if>
+            <if test="demandStatus != null">
+                demand_status = #{demandStatus,jdbcType=TINYINT},
+            </if>
+            <if test="hostName != null">
+                host_name = #{hostName,jdbcType=VARCHAR},
+            </if>
+            <if test="hostContacts != null">
+                host_contacts = #{hostContacts,jdbcType=VARCHAR},
+            </if>
+            <if test="hostPhone != null">
+                host_phone = #{hostPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="beginDate != null">
+                begin_date = #{beginDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endDate != null">
+                end_date = #{endDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="desc != null">
+                desc = #{desc,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateById" parameterType="com.cn.mywork.sketch.entity.DemandInfo">
+        update demand_info
+        set demand_code = #{demandCode,jdbcType=VARCHAR},
+            demand_name = #{demandName,jdbcType=VARCHAR},
+            demand_status = #{demandStatus,jdbcType=TINYINT},
+            host_name = #{hostName,jdbcType=VARCHAR},
+            host_contacts = #{hostContacts,jdbcType=VARCHAR},
+            host_phone = #{hostPhone,jdbcType=VARCHAR},
+            begin_date = #{beginDate,jdbcType=TIMESTAMP},
+            end_date = #{endDate,jdbcType=TIMESTAMP},
+            desc = #{desc,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

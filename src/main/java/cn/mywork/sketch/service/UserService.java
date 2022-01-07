@@ -1,8 +1,8 @@
 package cn.mywork.sketch.service;
 
+import cn.mywork.sketch.pojo.UserInfo;
 import cn.mywork.sketch.vo.UserVo;
-import cn.mywork.sketch.pojo.Role;
-import cn.mywork.sketch.pojo.User;
+import cn.mywork.sketch.pojo.RoleInfo;
 import com.github.pagehelper.PageInfo;
 
 import java.util.Collection;
@@ -14,9 +14,9 @@ import java.util.List;
  */
 public interface UserService {
 
-    User findByUsername(String username);
+    UserInfo findByUsername(String username);
 
-    User find(int id);
+    UserInfo find(int id);
 
     PageInfo<UserVo> findList(int pageNum, int pageSize);
 
@@ -24,9 +24,9 @@ public interface UserService {
 
     void deleteByIdIn(Collection<Integer> idList);
 
-    void insert(User user);
+    void insert(UserInfo userInfo);
 
-    void updateById(User user);
+    void updateById(UserInfo userInfo);
 
-    List<Role> roleList();
+    List<RoleInfo> roleList();
 }

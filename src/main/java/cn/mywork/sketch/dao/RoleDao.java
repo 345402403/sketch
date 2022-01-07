@@ -1,7 +1,7 @@
 package cn.mywork.sketch.dao;
 import java.util.List;
 
-import cn.mywork.sketch.pojo.Role;
+import cn.mywork.sketch.pojo.RoleInfo;
 
 public interface RoleDao {
     /**
@@ -14,31 +14,31 @@ public interface RoleDao {
      *
      * @mbg.generated 2021-02-20 19:39:57
      */
-    int insert(Role record);
+    int insert(RoleInfo record);
 
     /**
      *
      * @mbg.generated 2021-02-20 19:39:57
      */
-    int insertSelective(Role record);
+    int insertSelective(RoleInfo record);
 
     /**
      *
      * @mbg.generated 2021-02-20 19:39:57
      */
-    Role selectByPrimaryKey(Integer id);
+    RoleInfo selectByPrimaryKey(Integer id);
 
     /**
      *
      * @mbg.generated 2021-02-20 19:39:57
      */
-    int updateByPrimaryKeySelective(Role record);
+    int updateByPrimaryKeySelective(RoleInfo record);
 
     /**
      *
      * @mbg.generated 2021-02-20 19:39:57
      */
-    int updateByPrimaryKey(Role record);
+    int updateByPrimaryKey(RoleInfo record);
 
-    List<Role> selectAll();
+    List<RoleInfo> selectAll();
 }
